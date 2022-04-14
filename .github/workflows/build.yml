@@ -8,16 +8,22 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt
+name: x86N3160
 
 on:
   repository_dispatch:
-  workflow_dispatch:
-    inputs:
-      ssh:
-        description: 'SSH connection to Actions'
-        required: false
-        default: 'false'
+  release:
+    types: published
+  push:
+    branches:
+      - main
+    paths:
+      - '.config'
+#  schedule:
+#    - cron: 30 17 * * *
+  watch:
+    types: started
+
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/openwrt-gl-ax1800
